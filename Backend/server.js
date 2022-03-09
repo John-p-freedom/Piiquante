@@ -1,5 +1,5 @@
 //Importation du package HTTP natif de Node
-const https = require('https');
+const http = require('http');
 
 //Importation du fichier app
 const app = require('./app');
@@ -43,7 +43,7 @@ function errorHandler(error) {
 }
 
 //Création du server depuis le fichier app
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 //Écouteur d'évènements consignant le port ou le canal nommé sur lequel le serveur s'exécute
 server.on('error', errorHandler);
