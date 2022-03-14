@@ -1,6 +1,9 @@
 //Importation de l'application express
 const express = require('express');
 
+//Importation de la sécurité helmet
+const helmet = require('helmet');
+
 //Importation de mongoose
 const mongoose = require('mongoose');
 
@@ -23,8 +26,9 @@ mongoose.connect((process.env.MONGO_URI),
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-//Appel de l'application express
+//Appel de l'application express et de sa sécurité
 const app = express();
+app.use(helmet());
 
 //Middleware qui permet la communication entre des serveurs différents
 app.use((req, res, next) => {
