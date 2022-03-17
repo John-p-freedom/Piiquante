@@ -40,7 +40,7 @@ exports.modifySauce = (req, res, next) => {
       }
       if (req.file) { //si une image existe => supression de l'image
         const filename = sauce.imageUrl.split("/images/")[1];
-        fs.unlink(`images/${filename}`, () => {});
+        fs.unlinkSync(`images/${filename}`);
       }
       const sauceObject = req.file ? //vérifie si une image existe et applique les paramètres de modification
           {
