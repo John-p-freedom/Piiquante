@@ -39,6 +39,8 @@ app.use((req, res, next) => {
 
 //Middleware d'extraction du corp json
 app.use(express.json());
+
+//Middleware d'application de helmet pour express
 app.use(helmet({
   crossOriginResourcePolicy: false,
 }));

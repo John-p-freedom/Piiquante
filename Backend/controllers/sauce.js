@@ -35,14 +35,14 @@ exports.createSauce = (req, res, next) => {
 exports.modifySauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
-      if (sauce.userId !== req.auth.userId) { //si la requête est présenter par le même id que celui qui l'a poster => error
+      if (sauce.userId !== req.auth.userId) {
         res.status(403).json({ error: "Requête non autorisée" });
       }
-      if (req.file) { //si une image existe => supression de l'image
+      if (req.file) {
         const filename = sauce.imageUrl.split("/images/")[1];
         fs.unlinkSync(`images/${filename}`);
       }
-      const sauceObject = req.file ? //vérifie si une image existe et applique les paramètres de modification
+      const sauceObject = req.file ?
           {
             ...JSON.parse(req.body.sauce),
             imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
